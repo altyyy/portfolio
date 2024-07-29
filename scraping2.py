@@ -5,6 +5,7 @@ import pandas as pd
 import requests
 import os
 import datetime
+import mysql.connector
 # 変数urlにSUUMOホームページのURLを格納する
 url = 'https://suumo.jp/jj/chintai/ichiran/FR301FC001/?ar=030&bs=040&ra=013&cb=0.0&ct=9999999&et=9999999&cn=9999999&mb=0&mt=9999999&shkr1=03&shkr2=03&shkr3=03&shkr4=03&fw2=&ek=024041310&rn=0240&page={}'
 r = requests.get(url)
@@ -82,7 +83,7 @@ df = pd.DataFrame(d_list)
 
 selected_data = []
 for item in d_list:
-    # 例: "Author 2" が著者の場合のみデータを選択する
+    # 例: "料金が13万円" のデータのみ表示
     if item["fee"] == "13万円":
         selected_data.append(item)
 
