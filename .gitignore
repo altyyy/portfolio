@@ -1,9 +1,0 @@
-# GitHubで管理したくないディレクトリをここに追加する
-
-__pycache__/
-
-.ipynb_checkpoints/
-
-.DS_Store
-.gitignore
-config.py
