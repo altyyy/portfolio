@@ -13,20 +13,32 @@ conn = mysql.connector.connect(
 if not conn.is_connected():
     raise Exception("MySQLサーバへの接続に失敗しました")
 
-cur = conn.cursor(dictionary=True)  # 取得結果を辞書型で扱う設定
+# カーソルを作成
+cursor = conn.cursor()
 
-query__for_fetching = """
-SELECT
-    houses.id   AS id,
-    houses.title AS title
-FROM houses
-ORDER BY houses.id
-;
+# 挿入するデータ（例）
+title = "hoge"
+access = "hogee"
+age = "hogeeee"
+
+# INSERTクエリ
+insert_query = """
+INSERT INTO houses  (title,access,age)
+VALUES (%s,%s,%s)
 """
 
-cur.execute(query__for_fetching)
+# データのタプル
+data = (title, access, age)
 
-for fetched_line in cur.fetchall():
-    id = fetched_line['id']
-    name = fetched_line['title']
-    print(f'{id}: {name}')
+# クエリの実行
+cursor.execute(insert_query, data)
+
+# 変更をコミット
+conn.commit()
+
+# 挿入したレコード数の表示
+print(cursor.rowcount, "record(s) inserted")
+
+# カーソルと接続を閉じる
+cursor.close()
+conn.close()
