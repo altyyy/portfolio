@@ -1,3 +1,5 @@
 # GitHubで管理したくないディレクトリをここに追加する
 
 __pycache__/
+
+.ipynb_checkpoints
