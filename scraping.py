@@ -55,7 +55,7 @@ def update_variables(*var_names):
 url = 'https://suumo.jp/jj/chintai/ichiran/FR301FC001/?ar=030&bs=040&ra=013&cb=0.0&ct=9999999&et=9999999&cn=9999999&mb=0&mt=9999999&shkr1=03&shkr2=03&shkr3=03&shkr4=03&fw2=&ek=024041310&rn=0240&page={}'
 r = requests.get(url)
 
-# 変数d_listに空のリストを作成する
+# 変数d_listに空のリストを作成する　いらない？？？？？？
 d_list = []
 
 #データベース接続
@@ -91,7 +91,7 @@ for i in range(1, 20):
         access = detail.find('li', class_='cassetteitem_detail-col2').text
         age = detail.find('li', class_='cassetteitem_detail-col3').text
 
-        #した二つの変数にリストで保持されているからインサートできない　accessは一番小さい数　ageは築年数の間だけ
+        #accessは一番小さい数　ageは築年数の間だけ
         access = extract_numbers2(access)
         access = find_smallest_number(access)
         age = check_new_or_age(age)
